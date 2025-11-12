@@ -1,2 +1,35 @@
-<h1>Movie Recommender is Live!</h1>
-<a href="./recommendations_top10.csv">عرض ملف التوصيات</a>
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>نظام التوصية للأفلام 🎬</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>نظام التوصية للأفلام 🎬</h1>
+      <p>نتائج نموذج <b>SVD (Surprise)</b> بعد معالجة البيانات باستخدام <b>Apache Beam</b> (مجموعة MovieLens 1M).</p>
+      <div class="links">
+        <a class="btn" href="./recommendations_top10.csv" download>تنزيل ملف التوصيات (CSV)</a>
+        <a class="btn ghost" href="./data/recs.json" target="_blank">عرض JSON</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls">
+        <label for="userSelect">اختر مستخدم:</label>
+        <select id="userSelect"></select>
+        <input id="search" type="text" placeholder="ابحث في العناوين…" />
+      </section>
+
+      <section id="cards" class="grid"></section>
+    </main>
+
+    <footer class="footer">
+      <small>© <span id="y"></span> — بيانات MovieLens 1M — مشروع أبو سالم.</small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

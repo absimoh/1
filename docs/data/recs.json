@@ -1,0 +1,14 @@
+python - << 'PY'
+import os, json, pandas as pd
+recs = pd.read_csv("output/recommendations_top10.csv")
+recs["score"] = recs["score"].round(3)
+out = {}
+for uid, g in recs.groupby("user_id"):
+    out[int(uid)] = [
+        {"movie_id": int(r.movie_id), "title": str(r.title), "score": float(r.score)}
+        for r in g.sort_values("score", ascending=False).itertuples(index=False)
+    ]
+os.makedirs("docs/data", exist_ok=True)
+with open("docs/data/recs.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False)
+print("✅ تم توليد docs/data/recs.json")
+PY
