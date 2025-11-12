@@ -1,8 +1,19 @@
 async function loadRecs() {
-  const res = await fetch("./data/recs.json", { cache: "no-store" });
-  if (!res.ok) throw new Error("تعذر تحميل data/recs.json");
+  // ابنِ المسار المطلق: origin + pathname (مع ضمان السلاش في النهاية)
+  const origin = window.location.origin;
+  let path = window.location.pathname;
+  if (!path.endsWith("/")) path += "/";
+
+  // اضبط رابط CSV في الهيدر (لو موجود)
+  const csv = document.querySelector('a[href="./recommendations_top10.csv"]');
+  if (csv) csv.href = `${origin}${path}recommendations_top10.csv`;
+
+  const url = `${origin}${path}data/recs.json`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`تعذر تحميل: ${url} (status ${res.status})`);
   return res.json();
 }
+
 
 function computeTop5(recs) {
   // تجميع أفلام: movie_id -> {title,sum,count}
