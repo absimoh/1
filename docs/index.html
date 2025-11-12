@@ -7,27 +7,39 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="header">
-      <h1>نظام التوصية للأفلام 🎬</h1>
-      <p>نتائج نموذج <b>SVD (Surprise)</b> بعد معالجة البيانات باستخدام <b>Apache Beam</b> (مجموعة MovieLens 1M).</p>
-      <div class="links">
-        <a class="btn" href="./recommendations_top10.csv" download>تنزيل ملف التوصيات (CSV)</a>
-        <a class="btn ghost" href="./data/recs.json" target="_blank">عرض JSON</a>
+    <header class="hero">
+      <div class="wrap">
+        <h1>🎬 نظام التوصية — MovieLens 1M</h1>
+        <p>نموذج <b>SVD (Surprise)</b> بعد معالجة البيانات بـ <b>Apache Beam</b>.</p>
+        <div class="cta">
+          <a class="btn" href="./recommendations_top10.csv" download>تنزيل ملف التوصيات (CSV)</a>
+          <a class="btn ghost" href="./data/recs.json" target="_blank">عرض JSON</a>
+        </div>
       </div>
     </header>
 
     <main class="container">
-      <section class="controls">
-        <label for="userSelect">اختر مستخدم:</label>
-        <select id="userSelect"></select>
-        <input id="search" type="text" placeholder="ابحث في العناوين…" />
+      <section class="panel">
+        <h2>🔥 أعلى 5 أفلام تقييمًا</h2>
+        <p class="muted">محسوبة كمتوسط درجة التوقّع عبر جميع المستخدمين الذين ظهرت لهم ضمن أفضل 10.</p>
+        <div id="top5" class="grid"></div>
       </section>
 
-      <section id="cards" class="grid"></section>
+      <section class="panel">
+        <div class="row">
+          <h2>⭐ توصيات حسب المستخدم</h2>
+          <div class="controls">
+            <label for="userSelect">اختر مستخدم:</label>
+            <select id="userSelect"></select>
+            <input id="search" type="text" placeholder="ابحث في العناوين…" />
+          </div>
+        </div>
+        <div id="cards" class="grid"></div>
+      </section>
     </main>
 
     <footer class="footer">
-      <small>© <span id="y"></span> — بيانات MovieLens 1M — مشروع أبو سالم.</small>
+      <small>© <span id="y"></span> — مشروع أبو سالم.</small>
     </footer>
 
     <script src="app.js"></script>
